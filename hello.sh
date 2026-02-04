@@ -1,22 +1,27 @@
 #!/bin/bash
-USERID=$(id-u)
-if[$USERID -ne 0]
-then 
-echo "Error:: please run this this script with root access"
+
+USERID=$(id -u)
+
+if [ $USERID -ne 0 ]
+then
+  echo "Error:: please run this script with root access"
+  exit 1
 fi
+
 yum install postfix -y
-if[$? -ne 0]
-then 
-echo "Installation of postfix is error"
-exit 1
+if [ $? -ne 0 ]
+then
+  echo "Installation of postfix failed"
+  exit 1
 else
-echo "installation of postfix is success"
+  echo "Installation of postfix successful"
 fi
+
 yum install maven -y
-if[$? -ne 0]
-then 
-echo "installation of maven is error"
-exit 1
+if [ $? -ne 0 ]
+then
+  echo "Installation of maven failed"
+  exit 1
 else
-echo "installation of maveen is success"
+  echo "Installation of maven successful"
 fi
